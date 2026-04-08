@@ -1,8 +1,43 @@
-buildscript {
-    repositories { google(); mavenCentral() }
-    dependencies { classpath 'com.android.tools.build:gradle:8.2.0' }
+plugins {
+    id 'com.android.application'
 }
-allprojects {
-    repositories { google(); mavenCentral() }
+
+android {
+    namespace 'com.gabrielcastillo.gestage'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.gabrielcastillo.gestage"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('../gestage.keystore')
+            storePassword 'gestage2024'
+            keyAlias 'gestage-key'
+            keyPassword 'gestage2024'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
-task clean(type: Delete) { delete rootProject.buildDir }
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+}
