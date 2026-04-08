@@ -11,20 +11,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
-
-      - name: Install Android build tools
-        run: |
-          sdkmanager "platforms;android-34" "build-tools;34.0.0"
+        uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: true
+          cmdline-tools-version: '11076708'
 
       - name: Make gradlew executable
         run: chmod +x gestage-android-project/gradlew
@@ -32,17 +31,17 @@ jobs:
       - name: Build Release APK
         run: cd gestage-android-project && ./gradlew assembleRelease --stacktrace
 
-      - name: Build Release AAB (Play Store)
+      - name: Build Release AAB
         run: cd gestage-android-project && ./gradlew bundleRelease --stacktrace
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: GestAge-APK
           path: gestage-android-project/app/build/outputs/apk/release/app-release.apk
 
       - name: Upload AAB PlayStore
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: GestAge-AAB-PlayStore
           path: gestage-android-project/app/build/outputs/bundle/release/app-release.aab
