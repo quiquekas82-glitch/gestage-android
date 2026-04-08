@@ -1,9 +1,9 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+
 android {
     namespace 'com.gabrielcastillo.gestage'
     compileSdk 34
+
     defaultConfig {
         applicationId "com.gabrielcastillo.gestage"
         minSdk 21
@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0.0"
     }
+
     signingConfigs {
         release {
             storeFile file('../gestage.keystore')
@@ -19,17 +20,23 @@ android {
             keyPassword 'gestage2024'
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             signingConfig signingConfigs.release
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
 dependencies {
     implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'com.google.android.material:material:1.11.0'
 }
