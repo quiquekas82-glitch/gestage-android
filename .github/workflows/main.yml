@@ -23,25 +23,33 @@ jobs:
         uses: android-actions/setup-android@v3
         with:
           accept-android-sdk-licenses: true
-          cmdline-tools-version: '11076708'
+
+      - name: List files to debug
+        run: find . -name "gradlew" -o -name "build.gradle" | head -20
 
       - name: Make gradlew executable
-        run: chmod +x gestage-android-project/gradlew
+        run: find . -name "gradlew" -exec chmod +x {} \;
 
       - name: Build Release APK
-        run: cd gestage-android-project && ./gradlew assembleRelease --stacktrace
+        run: |
+          GRADLEW=$(find . -name "gradlew" | head -1)
+          DIR=$(dirname $GRADLEW)
+          cd $DIR && ./gradlew assembleRelease --stacktrace
 
       - name: Build Release AAB
-        run: cd gestage-android-project && ./gradlew bundleRelease --stacktrace
+        run: |
+          GRADLEW=$(find . -name "gradlew" | head -1)
+          DIR=$(dirname $GRADLEW)
+          cd $DIR && ./gradlew bundleRelease --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: GestAge-APK
-          path: gestage-android-project/app/build/outputs/apk/release/app-release.apk
+          path: "**/app/build/outputs/apk/release/app-release.apk"
 
       - name: Upload AAB PlayStore
         uses: actions/upload-artifact@v4
         with:
           name: GestAge-AAB-PlayStore
-          path: gestage-android-project/app/build/outputs/bundle/release/app-release.aab
+          path: "**/app/build/outputs/bundle/release/app-release.aab"
