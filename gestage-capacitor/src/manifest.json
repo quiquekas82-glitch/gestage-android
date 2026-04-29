@@ -1,0 +1,25 @@
+{
+  "name": "GestAge · Dr. Gabriel Castillo MMF",
+  "short_name": "GestAge",
+  "description": "Calculadora de Edad Gestacional — Dr. Gabriel Castillo, Medicina Materno Fetal",
+  "theme_color": "#1B4D6B",
+  "background_color": "#F7F5F2",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

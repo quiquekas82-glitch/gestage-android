@@ -1,0 +1,11 @@
+include ':app'
+
+def capacitorModules = [
+    ':capacitor-android',
+    ':capacitor-splash-screen',
+]
+
+capacitorModules.each {
+    include it
+    project(it).projectDir = new File("./node_modules/@capacitor/${it.substring(1).replace('capacitor-', '')}/android")
+}

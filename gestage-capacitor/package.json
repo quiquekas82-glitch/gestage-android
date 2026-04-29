@@ -1,0 +1,33 @@
+{
+  "name": "gestage",
+  "version": "2.0.0",
+  "description": "GestAge — Calculadora de Edad Gestacional · Dr. Gabriel Castillo MMF",
+  "private": true,
+  "scripts": {
+    "sync": "npx cap sync android",
+    "open": "npx cap open android",
+    "build:android": "npx cap sync android && npx cap open android",
+    "serve": "npx serve src -l 3000"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/splash-screen": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0",
+    "serve": "^14.0.0"
+  },
+  "keywords": [
+    "gestage",
+    "gestational-age",
+    "obstetrics",
+    "maternal-fetal-medicine",
+    "capacitor",
+    "android",
+    "pwa"
+  ],
+  "author": "Dr. Gabriel Castillo — Medicina Materno Fetal",
+  "license": "proprietary"
+}
